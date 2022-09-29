@@ -1,5 +1,9 @@
 <script>
+import User from './components/User.vue';
 export default {
+  components:{
+    Test
+  },
   data() {
     return {
       // 'name': 'John',
@@ -89,6 +93,19 @@ export default {
       'checked': false,
       'languages': [],
       'choice': '',
+      'selected': '',
+      'makeYears': function () {
+        let result = [];
+        for (let i = 1950; i < (new Date).getFullYear(); i++) {
+          result.push(i);
+        }
+        return result;
+      },
+      'months': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      'days': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+      'years': [this.makeYears()],
+      'isDisable':true,
+
     }
   },
   methods: {
@@ -331,27 +348,37 @@ export default {
   <!--  <input type="checkbox" v-model="checked">-->
   <!--  <p v-if="checked">yes</p>-->
   <!--  <p v-else>nope</p>-->
-  <p>Which languages do you know?</p>
-  <p>English</p><input type="checkbox" v-model="languages" value="english">
-  <p>Spanish</p><input type="checkbox" v-model="languages" value="spanish">
-  <p>Ukrainian</p><input type="checkbox" v-model="languages" value="ukrainian">
-  <ul>
-    <li v-for="lang in languages">{{ lang }}</li>
-  </ul>
-  <p>Your native language is:</p>
-  <p>Eng</p>
-  <input type="radio" name="radio" v-model="choice" value="english">
-  <p>Ukr</p>
-  <input type="radio" name="radio" v-model="choice" value="ukrainian">
-  <p v-if="choice === 'ukrainian'">Добрий день!</p>
-  <p v-if="choice === 'english'">Good afternoon!</p>
+  <!--  <p>Which languages do you know?</p>-->
+  <!--  <p>English</p><input type="checkbox" v-model="languages" value="english">-->
+  <!--  <p>Spanish</p><input type="checkbox" v-model="languages" value="spanish">-->
+  <!--  <p>Ukrainian</p><input type="checkbox" v-model="languages" value="ukrainian">-->
+  <!--  <ul>-->
+  <!--    <li v-for="lang in languages">{{ lang }}</li>-->
+  <!--  </ul>-->
+  <!--  <p>Your native language is:</p>-->
+  <!--  <p>Eng</p>-->
+  <!--  <input type="radio" name="radio" v-model="choice" value="english">-->
+  <!--  <p>Ukr</p>-->
+  <!--  <input type="radio" name="radio" v-model="choice" value="ukrainian">-->
+  <!--  <p v-if="choice === 'ukrainian'">Добрий день!</p>-->
+  <!--  <p v-if="choice === 'english'">Good afternoon!</p>-->
+  <p>Where are you come from?</p>
+  <select v-model="selected">
+    <option value="Ukraine">Ukraine</option>
+    <option value="USA">USA</option>
+    <option value="England">England</option>
+  </select>
+  <p>{{ selected }}</p>
+  <select>
+    <option v-for="year in years">{{year}}</option>
+  </select>
+
 </template>
 <style>
 button {
   background: #222222;
   color: crimson;
 }
-
 .someClass {
   color: blue;
 }
